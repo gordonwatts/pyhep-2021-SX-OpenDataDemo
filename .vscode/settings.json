@@ -1,7 +1,8 @@
 {
-    "python.pythonPath": "I:\\gwatts\\Code\\irishep\\pyhep-2021-SX-OpenDataDemo\\.venv\\Scripts\\python.exe",
+    "python.pythonPath": ".venv\\Scripts\\python.exe",
     "jupyter.jupyterServerType": "local",
     "cSpell.words": [
         "Higgs"
-    ]
+    ],
+    "python.testing.promptToConfigure": false
 }
