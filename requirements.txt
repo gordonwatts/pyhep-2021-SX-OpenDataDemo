@@ -6,5 +6,4 @@ hist[plot]
 # servicex_clients
 
 # Special things which are in beta - before release these should be removed!
-func-adl-servicex==1.1b2
-servicex==2.2.3b2
+func-adl-servicex==1.1b6

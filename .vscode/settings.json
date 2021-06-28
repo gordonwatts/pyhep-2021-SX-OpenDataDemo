@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": ".venv\\Scripts\\python.exe",
+    "python.pythonPath": "C:\\Users\\gordo\\Code\\iris-hep\\pyhep-2021-SX-OpenDataDemo\\.venv\\Scripts\\python.exe",
     "jupyter.jupyterServerType": "local",
     "cSpell.words": [
         "Higgs"
