@@ -20,7 +20,7 @@ Event Selection:
     * There may be a mass window of 66 to 116 applied to these two.
 1. The Higgs mass is the 4 lepton combination of the two Z candidates.
 
-The code can be found in a repo that does the above, (here)[https://github.com/atlas-outreach-data-tools/atlas-outreach-cpp-framework-13tev/blob/master/Analysis/HZZAnalysis/HZZAnalysis.C] (in C++). And (here is the driver)[https://github.com/atlas-outreach-data-tools/atlas-outreach-cpp-framework-13tev/blob/master/Analysis/HZZAnalysis/main_HZZAnalysis.C], which is also contains references to the datasets used.
+The code can be found in a repo that does the above, [here](https://github.com/atlas-outreach-data-tools/atlas-outreach-cpp-framework-13tev/blob/master/Analysis/HZZAnalysis/HZZAnalysis.C) (in C++). And [here is the driver](https://github.com/atlas-outreach-data-tools/atlas-outreach-cpp-framework-13tev/blob/master/Analysis/HZZAnalysis/main_HZZAnalysis.C), which is also contains references to the datasets used.
 
 This should reproduce the plot from MC on the web page linked above.
 
