@@ -225,16 +225,19 @@ async def run_atlas_4l_analysis(ds_names: Union[str,List[str]]):
     # Create the analysis and we can run from there.
     analysis = ATLAS_Higgs_4L()
 
-    async def run_updates_stream(accumulator_stream):
+    async def run_updates_stream(accumulator_stream, name):
         '''Run to get the last item in the stream'''
         coffea_info = None
-        async for coffea_info in accumulator_stream:
-            print(coffea_info)
+        try:
+            async for coffea_info in accumulator_stream:
+                print(coffea_info)
+        except Exception as e:
+            raise Exception(f'Failure while processing {name}') from e
         return coffea_info
 
     # Why do I need run_updates_stream, why not just await on execute (which fails with async gen can't).
     # Perhaps something from aiostream can help here?
-    all_plots = await asyncio.gather(*[run_updates_stream(executor.execute(analysis, source)) for source in datasources])
+    all_plots = await asyncio.gather(*[run_updates_stream(executor.execute(analysis, source), source.metadata['dataset']) for source in datasources])
 
     # Combine the plots
     all_plots_mass = [p['mass'] for p in all_plots]

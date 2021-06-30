@@ -32,4 +32,66 @@ files = {
             'files': ['root://eospublic.cern.ch//eos/opendata/atlas/OutreachDatasets/2020-01-22/4lep/MC/mc_341964.WH125_ZZ4lep.4lep.root'],
             'nickname': 'WH125_ZZ4lep'
         },
+    'ZqqZll':
+        {
+            'files': ['root://eospublic.cern.ch//eos/opendata/atlas/OutreachDatasets/2020-01-22/4lep/MC/mc_363356.ZqqZll.4lep.root'],
+            'nickname': 'ZqqZll'
+        },
+    # A very weird bug occurs in this file! Awkward fails. No idea what causes this.
+    # To repo, run everything, then uncomment this to watch.
+    # 'WqqZll':
+    #     {
+    #         'files': ['root://eospublic.cern.ch//eos/opendata/atlas/OutreachDatasets/2020-01-22/2lep/MC/mc_363358.WqqZll.2lep.root'],
+    #         'nickname': 'WqqZll'
+    #     },
+    'WpqqWmlv':
+        {
+            'files': ['root://eospublic.cern.ch//eos/opendata/atlas/OutreachDatasets/2020-01-22/2lep/MC/mc_363359.WpqqWmlv.2lep.root'],
+            'nickname': 'WpqqWmlv'
+        },
+    'WplvWmqq':
+        {
+            'files': ['root://eospublic.cern.ch//eos/opendata/atlas/OutreachDatasets/2020-01-22/2lep/MC/mc_363360.WplvWmqq.2lep.root'],
+            'nickname': 'WplvWmqq'
+        },
+    'WlvZqq':
+        {
+            'files': ['root://eospublic.cern.ch//eos/opendata/atlas/OutreachDatasets/2020-01-22/2lep/MC/mc_363489.WlvZqq.2lep.root'],
+            'nickname': 'WlvZqq'
+        },
+    'llll':
+        {
+            'files': ['root://eospublic.cern.ch//eos/opendata/atlas/OutreachDatasets/2020-01-22/4lep/MC/mc_363490.llll.4lep.root'],
+            'nickname': 'llll'
+        },
+    'lllv':
+        {
+            'files': ['root://eospublic.cern.ch//eos/opendata/atlas/OutreachDatasets/2020-01-22/4lep/MC/mc_363491.lllv.4lep.root'],
+            'nickname': 'lllv'
+        },
+    'llvv':
+        {
+            'files': ['root://eospublic.cern.ch//eos/opendata/atlas/OutreachDatasets/2020-01-22/4lep/MC/mc_363492.llvv.4lep.root'],
+            'nickname': 'llvv'
+        },
+    'lvvv':
+        {
+            'files': ['root://eospublic.cern.ch//eos/opendata/atlas/OutreachDatasets/2020-01-22/2lep/MC/mc_363493.lvvv.2lep.root'],
+            'nickname': 'lvvv'
+        },
+    'Zee':
+        {
+            'files': ['root://eospublic.cern.ch//eos/opendata/atlas/OutreachDatasets/2020-01-22/4lep/MC/mc_361106.Zee.4lep.root'],
+            'nickname': 'Zee'
+        },
+    'Zmumu':
+        {
+            'files': ['root://eospublic.cern.ch//eos/opendata/atlas/OutreachDatasets/2020-01-22/4lep/MC/mc_361107.Zmumu.4lep.root'],
+            'nickname': 'Zmumu'
+        },
+    'Ztautau':
+        {
+            'files': ['root://eospublic.cern.ch//eos/opendata/atlas/OutreachDatasets/2020-01-22/4lep/MC/mc_361108.Ztautau.4lep.root'],
+            'nickname': 'Ztautau'
+        },
 }
