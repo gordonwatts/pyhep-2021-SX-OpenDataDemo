@@ -1,4 +1,5 @@
-from typing import List
+import asyncio
+from typing import List, Union
 
 import awkward as ak
 import numpy as np
@@ -52,6 +53,7 @@ class ATLAS_Higgs_4L(Analysis):
         mass_hist = hist.Hist(
             "Events",
             hist.Cat("channel", "Channel"),
+            hist.Cat("dataset", "Dataset"),
             hist.Bin("mass", "$Z_{ee}$ [GeV]", 60, 60, 180),
         )
         # weight = events.scaleFactor*events.mcWeight
@@ -126,6 +128,7 @@ class ATLAS_Higgs_4L(Analysis):
         mass_hist.fill(
             channel=r'$ee\mu\mu$',
             mass=h_eemumu.mass/1000.0,
+            dataset=dataset,
             weight=weight*np.ones(len(h_eemumu.mass))
         )
 
@@ -155,6 +158,7 @@ class ATLAS_Higgs_4L(Analysis):
             mass_hist.fill(
                 channel=channel,
                 mass=ak.flatten(h_eeee.mass/1000.0),
+                dataset=dataset,
                 weight=weight*np.ones(len(h_eeee.mass)),
             )
 
@@ -194,15 +198,19 @@ def make_ds(name: str, query: ObjectStream):
     return DataSource(query=query, metadata={'dataset': name}, datasets=datasets)
 
 
-async def run_atlas_4l_analysis(ds_names: List[str]):
+async def run_atlas_4l_analysis(ds_names: Union[str,List[str]]):
     '''
     Run on a known analysis file/files and return the result.
     Should be fine to start many of these at once.
-    '''
 
-    # temp
-    assert len(ds_names) == 1
-    ds_name = ds_names[0]
+    ds_names are names in utils, or "*" which means everything.
+    '''
+    # Parse the dataset if need be.
+    if isinstance(ds_names, str):
+        if ds_names != '*':
+            raise Exception('DS Name should be a list or a * for everything')
+        from utils import files
+        ds_names = list(files.keys())
 
     # Create the query
     ds = ServiceXSourceUpROOT('cernopendata://dummy',  "mimi", backend='open_uproot')
@@ -212,7 +220,7 @@ async def run_atlas_4l_analysis(ds_names: List[str]):
     # Get data source for this run
     # TODO: Why do I need to tell it the datatype?
     executor = LocalExecutor(datatype='parquet')
-    datasource = make_ds(ds_name, leptons)
+    datasources = [make_ds(ds_name, leptons) for ds_name in ds_names]
 
     # Create the analysis and we can run from there.
     analysis = ATLAS_Higgs_4L()
@@ -226,4 +234,12 @@ async def run_atlas_4l_analysis(ds_names: List[str]):
 
     # Why do I need run_updates_stream, why not just await on execute (which fails with async gen can't).
     # Perhaps something from aiostream can help here?
-    return await run_updates_stream(executor.execute(analysis, datasource))
+    all_plots = await asyncio.gather(*[run_updates_stream(executor.execute(analysis, source)) for source in datasources])
+
+    # Combine the plots
+    all_plots_mass = [p['mass'] for p in all_plots]
+    mass = all_plots_mass[0]
+    for p in all_plots_mass[1:]:
+        mass.add(p)
+
+    return mass
