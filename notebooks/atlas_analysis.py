@@ -1,8 +1,12 @@
+from typing import List
+
 import awkward as ak
 import numpy as np
 from coffea import hist
-from coffea.processor.servicex import Analysis, LocalExecutor
+from coffea.processor.servicex import Analysis, DataSource, LocalExecutor
 from func_adl import ObjectStream
+from func_adl_servicex import ServiceXSourceUpROOT
+from servicex.servicex import ServiceXDataset
 
 
 def apply_event_cuts (source: ObjectStream) -> ObjectStream:
@@ -120,7 +124,7 @@ class ATLAS_Higgs_4L(Analysis):
 
         sumw[dataset] += len(h_eemumu)
         mass_hist.fill(
-            channel='eemumu',
+            channel=r'$ee\mu\mu$',
             mass=h_eemumu.mass/1000.0,
             weight=weight*np.ones(len(h_eemumu.mass))
         )
@@ -155,9 +159,9 @@ class ATLAS_Higgs_4L(Analysis):
             )
 
         four_leptons_one_flavor(electrons_analysis[(ak.num(electrons_analysis) == 4)],
-                                'eeee')
+                                '$eeee$')
         four_leptons_one_flavor(muons_analysis[(ak.num(muons_analysis) == 4)],
-                                'mumumumu')
+                                '$\\mu\\mu\\mu\\mu$')
         
         # Testing why the above closest and furthers works. NO IDEA.
         # for i in range(10):
@@ -181,29 +185,45 @@ class ATLAS_Higgs_4L(Analysis):
             "mass": mass_hist,
         }
 
-async def run_analysis(ds_name: str):
+
+def make_ds(name: str, query: ObjectStream):
+    '''Create a ServiceX Datasource for a particular ATLAS Open data file
+    '''
+    from utils import files
+    datasets = [ServiceXDataset(files[name]['files'], backend_type='open_uproot', image='sslhep/servicex_func_adl_uproot_transformer:pr_fix_awk_bug')]
+    return DataSource(query=query, metadata={'dataset': name}, datasets=datasets)
+
+
+async def run_atlas_4l_analysis(ds_names: List[str]):
     '''
     Run on a known analysis file/files and return the result.
     Should be fine to start many of these at once.
     '''
 
-    # Build the query
+    # temp
+    assert len(ds_names) == 1
+    ds_name = ds_names[0]
 
-    analysis = ATLAS_Higgs_4L()
-    # TODO: It would be good if datatype was determined automagically (there is enough info)
+    # Create the query
+    ds = ServiceXSourceUpROOT('cernopendata://dummy',  "mimi", backend='open_uproot')
+    ds.return_qastle = True
+    leptons = good_leptons(apply_event_cuts(ds))
+
+    # Get data source for this run
+    # TODO: Why do I need to tell it the datatype?
     executor = LocalExecutor(datatype='parquet')
+    datasource = make_ds(ds_name, leptons)
 
-    datasource = make_ds('ggH125_ZZ4lep', leptons)
+    # Create the analysis and we can run from there.
+    analysis = ATLAS_Higgs_4L()
 
     async def run_updates_stream(accumulator_stream):
-    global first
-
-    count = 0
-    async for coffea_info in accumulator_stream:
-        count += 1
-        print(count, coffea_info)
-    return coffea_info
+        '''Run to get the last item in the stream'''
+        coffea_info = None
+        async for coffea_info in accumulator_stream:
+            print(coffea_info)
+        return coffea_info
 
     # Why do I need run_updates_stream, why not just await on execute (which fails with async gen can't).
     # Perhaps something from aiostream can help here?
-    result = await run_updates_stream(executor.execute(analysis, datasource))
+    return await run_updates_stream(executor.execute(analysis, datasource))
