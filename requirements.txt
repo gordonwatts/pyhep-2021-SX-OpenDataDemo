@@ -4,6 +4,7 @@ hist[plot]
 
 # Coffea - problem somehow with urllib - so you migth have to
 # do this install by hand.
+wheel
 coffea[servicex]
 
 # Special things which are in beta - before release these should be removed!
