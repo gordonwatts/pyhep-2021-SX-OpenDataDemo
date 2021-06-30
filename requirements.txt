@@ -8,4 +8,4 @@ wheel
 coffea[servicex]
 
 # Special things which are in beta - before release these should be removed!
-func-adl-servicex==1.1b6
+func-adl-servicex==1.1b7
