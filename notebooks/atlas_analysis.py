@@ -35,8 +35,8 @@ def good_leptons(source: ObjectStream) -> ObjectStream:
             'lep_trackd0pvunbiased': e.lep_trackd0pvunbiased,
             'lep_tracksigd0pvunbiased': e.lep_tracksigd0pvunbiased,
             'lep_z0': e.lep_z0,
-            # 'mcWeight': e.mcWeight,
-            # 'scaleFactor': e.scaleFactor_ELE*e.scaleFactor_MUON*e.scaleFactor_LepTRIGGER*e.scaleFactor_PILEUP,
+            'mcWeight': e.mcWeight,
+            'scaleFactor': e.scaleFactor_ELE*e.scaleFactor_MUON*e.scaleFactor_LepTRIGGER*e.scaleFactor_PILEUP,
         }) \
         .AsParquetFiles('junk.parquet')
 
@@ -56,11 +56,12 @@ class ATLAS_Higgs_4L(Analysis):
             hist.Cat("dataset", "Dataset"),
             hist.Bin("mass", "$Z_{ee}$ [GeV]", 60, 60, 180),
         )
-        # weight = events.scaleFactor*events.mcWeight
-        weight = 1.0
 
         dataset = events.metadata['dataset']
         leptons = events.lep
+
+        weight =  ak.Array(np.ones(len(events.scaleFactor))) if events.metadata['is_data'] \
+            else events.scaleFactor*events.mcWeight
 
         # Good electon selection
         electrons_mask = ((leptons.typeid == 11)
@@ -129,11 +130,11 @@ class ATLAS_Higgs_4L(Analysis):
             channel=r'$ee\mu\mu$',
             mass=h_eemumu.mass/1000.0,
             dataset=dataset,
-            weight=weight*np.ones(len(h_eemumu.mass))
+            weight=weight[eemumu_mask]
         )
 
         # Next, eeee. For this we have to build permutations and select the best one
-        def four_leptons_one_flavor(same_flavor_leptons, channel: str):
+        def four_leptons_one_flavor(same_flavor_leptons, event_weights, channel: str):
             fl_positive = same_flavor_leptons[same_flavor_leptons.charge > 0]
             fl_negative = same_flavor_leptons[same_flavor_leptons.charge < 0]
             fl_pairs = ak.cartesian((fl_positive, fl_negative))
@@ -145,44 +146,21 @@ class ATLAS_Higgs_4L(Analysis):
             the_closest = (delta == closest_masses)
             the_furthest = the_closest[:,::-1]
 
-            # mass_hist.fill(
-            #     channel=f'{channel}-z1',
-            #     mass=ak.flatten(zs[the_closest].mass/1000.0)
-            # )
-            # mass_hist.fill(
-            #     channel=f'{channel}-z2',
-            #     mass=ak.flatten(zs[the_furthest].mass/1000.0)
-            # )
             h_eeee = zs[the_closest] + zs[the_furthest]
             sumw[dataset] += len(h_eeee)
             mass_hist.fill(
                 channel=channel,
                 mass=ak.flatten(h_eeee.mass/1000.0),
                 dataset=dataset,
-                weight=weight*np.ones(len(h_eeee.mass)),
+                weight=event_weights,
             )
 
         four_leptons_one_flavor(electrons_analysis[(ak.num(electrons_analysis) == 4)],
+                                weight[(ak.num(electrons_analysis) == 4)],
                                 '$eeee$')
         four_leptons_one_flavor(muons_analysis[(ak.num(muons_analysis) == 4)],
+                                weight[(ak.num(muons_analysis) == 4)],
                                 '$\\mu\\mu\\mu\\mu$')
-        
-        # Testing why the above closest and furthers works. NO IDEA.
-        # for i in range(10):
-        #     print(f'  -> {i}')
-        #     print('      ', zs[the_closest][i].mass)
-        #     print('      ', ele_pairs_args[the_closest][i][0])
-        #     print('      ', zs[the_furthest][i].mass)
-        #     print('      ', ele_pairs_args[the_furthest][i][0])
-
-        # close_parings = ele_pairs_args[the_closest][:][0]
-        # far_parings = ele_pairs_args[the_furthest][:][0]
-
-        # close_positive, close_negative = ak.unzip(close_parings)
-        # far_positive, far_negative = ak.unzip(far_parings)
-
-        # print(ak.sum(close_positive == far_positive))
-        # print(ak.sum(close_negative == far_negative))
         
         return {
             "sumw": sumw,
@@ -194,8 +172,9 @@ def make_ds(name: str, query: ObjectStream):
     '''Create a ServiceX Datasource for a particular ATLAS Open data file
     '''
     from utils import files
+    is_data = name == 'data'
     datasets = [ServiceXDataset(files[name]['files'], backend_type='open_uproot', image='sslhep/servicex_func_adl_uproot_transformer:pr_fix_awk_bug')]
-    return DataSource(query=query, metadata={'dataset': name}, datasets=datasets)
+    return DataSource(query=query, metadata={'dataset': name, 'is_data': is_data}, datasets=datasets)
 
 
 async def run_atlas_4l_analysis(ds_names: Union[str,List[str]]):
@@ -230,7 +209,7 @@ async def run_atlas_4l_analysis(ds_names: Union[str,List[str]]):
         coffea_info = None
         try:
             async for coffea_info in accumulator_stream:
-                print(coffea_info)
+                pass
         except Exception as e:
             raise Exception(f'Failure while processing {name}') from e
         return coffea_info
