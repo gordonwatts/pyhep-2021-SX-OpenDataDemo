@@ -2,6 +2,9 @@
 jupyterlab
 hist[plot]
 
+# If running distributed...
+dask[distributed]
+
 # Coffea - problem somehow with urllib - so you migth have to
 # do this install by hand.
 wheel

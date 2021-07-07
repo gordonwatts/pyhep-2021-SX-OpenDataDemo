@@ -95,3 +95,112 @@ files = {
             'nickname': 'Ztautau'
         },
 }
+
+
+cms_files = {
+    'data_2e_7TeV':
+        {
+            'files': 'cernopendata://16',
+            'nickname': 'data_2e_7TeV'
+        },
+    'data_2mu_7TeV':
+        {
+            'files': 'cernopendata://17',
+            'nickname': 'data_2e_7TeV'
+        },
+    'data_2mu_8TeV_B':
+        {
+            'files': 'cernopendata://6004',
+            'nickname': 'data_2mu_8TeV_B'
+        },
+    'data_2mu_8TeV_C':
+        {
+            'files': 'cernopendata://6030',
+            'nickname': 'data_2mu_8TeV_C'
+        },
+    'data_2e_8TeV_B':
+        {
+            'files': 'cernopendata://6029',
+            'nickname': 'data_2e_8TeV_B'
+        },
+    'data_2e_8TeV_C':
+        {
+            'files': 'cernopendata://6003',
+            'nickname': 'data_2e_8TeV_C'
+        },
+    'SMHiggsToZZTo4L_M_125_7TeV':
+        {
+            'files': 'cernopendata://1507',
+            'nickname': 'SMHiggsToZZTo4L_M_125_7TeV'
+        },
+    'SMHiggsToZZTo4L_M-125_8TeV':
+        {
+            'files': 'cernopendata://9356',
+            'nickname': 'SMHiggsToZZTo4L_M-125_8TeV'
+        },
+    'ZZTo4mu_mll4_7TeV':
+        {
+            'files': 'cernopendata://1651',
+            'nickname': 'ZZTo4mu_mll4_7TeV'
+        },
+    'ZZTo4e_mll4_7TeV_II':
+        {
+            'files': 'cernopendata://1648',
+            'nickname': 'ZZTo4e_mll4_7TeV_II'
+        },
+    'ZZTo2e2mu_mll4_7TeV':
+        {
+            'files': 'cernopendata://1382',
+            'nickname': 'ZZTo2e2mu_mll4_7TeV'
+        },
+    'DYJetsToLL_M-50_7TeV':
+        {
+            'files': 'cernopendata://1394',
+            'nickname': 'DYJetsToLL_M_50_7TeV'
+        },
+    'DYJetsToLL_M-10To50_TuneZ2_7TeV':
+        {
+            'files': 'cernopendata://1393',
+            'nickname': 'DYJ_M_10To50_7TeV'
+        },
+    'DYJetsToLL_M-50_TuneZ2Star_8TeV':
+        {
+            'files': 'cernopendata://7731',
+            'nickname': 'DYJ_M50_8TeV'
+        },
+    'DYJetsToLL_M-10to50_HT-200to400_TuneZ2star_8TeV':
+        {
+            'files': 'cernopendata://7727',
+            'nickname': 'DYJ_10to50_HT_200to400S_8TeV'
+        },
+    'DYJetsToLL_M-10to50_HT-400toInf_TuneZ2star_8TeV':
+        {
+            'files': 'cernopendata://7728',
+            'nickname': 'DYJ_10to50_HT_400_8TeV'
+        },
+    'TTTo2L2Nu2B_7TeV':
+        {
+            'files': 'cernopendata://1360',
+            'nickname': 'TTTo2L2Nu2B_7TeV'
+        },
+    'ZZTo4mu_8TeV':
+        {
+            'files': 'cernopendata://10071',
+            'nickname': 'ZZTo4mu_8TeV'
+        },
+    'ZZTo4e_8TeV':
+        {
+            'files': 'cernopendata://10065',
+            'nickname': 'ZZTo4e_8TeV'
+        },
+    'ZZTo2e2mu_8TeV':
+        {
+            'files': 'cernopendata://10054',
+            'nickname': 'ZZTo2e2mu_8TeV'
+        },
+    'TTbar_8TeV':
+        {
+            'files': 'cernopendata://9518',
+            'nickname': 'TTbar_8TeV'
+        },
+}
