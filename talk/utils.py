@@ -95,3 +95,11 @@ files = {
             'nickname': 'Ztautau'
         },
 }
+
+cms_files = {
+    'SMHiggsToZZTo4L_M-125_7TeV':
+        {
+            'files': 'cernopendata://1507',
+            'nickname': 'SMHiggsToZZTo4L_M-125_7TeV'
+        }
+}
