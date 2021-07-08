@@ -113,7 +113,8 @@ cms_files = {
     # 'data_2mu_8TeV_B':
     #     {
     #         'files': 'cernopendata://6004',
-    #         'nickname': 'data_2mu_8TeV_B'
+    #         'nickname': 'data_2mu_8TeV_B',
+    #         'backend': 'cms_run1_aod_2'
     #     },
     # Not done yet
     # 'data_2mu_8TeV_C':
@@ -209,3 +210,16 @@ cms_files = {
             'nickname': 'TTbar_8TeV'
         },
 }
+
+
+def get_cms_backend(name: str) -> str:
+    '''
+    Based on the name, decide on the backend to use
+    '''
+    if name not in cms_files:
+        raise ValueError(f'Unknonw dataset {name}.')
+
+    if 'backend' in cms_files[name]:
+        return cms_files[name]['backend']
+
+    return 'cms_run1_aod'
