@@ -47,4 +47,4 @@ It is not currently possible to run on `binder` as `ServiceX` uses a non-standar
 
 ## Plans
 
-The [issues](issues) describes a list of issues that were encountered as this repository was built. As they are worked on, they will slowly be incorporated into this repostory.
+The [issues](/../../issues) describes a list of issues that were encountered as this repository was built. As they are worked on, they will slowly be incorporated into this repostory.
