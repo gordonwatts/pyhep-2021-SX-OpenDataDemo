@@ -98,11 +98,11 @@ files = {
 
 cms_files = {
     # Not done yet
-    # 'data_2e_7TeV':
-    #     {
-    #         'files': 'cernopendata://16',
-    #         'nickname': 'data_2e_7TeV'
-    #     },
+    'data_2e_7TeV':
+        {
+            'files': 'cernopendata://16',
+            'nickname': 'data_2e_7TeV'
+        },
     # Not done yet
     # 'data_2mu_7TeV':
     #     {
