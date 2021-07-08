@@ -3,6 +3,9 @@
 
 ## Using
 
+You can find the final notebooks used in the talk in the [talks](talks/) directory.
+
+
 Setup your environment:
 
 1. This has been run under python 3.9.5
