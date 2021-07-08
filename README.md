@@ -3,7 +3,9 @@
 
 ## Using
 
-You can find the final notebooks used in the talk in the [talks](tree/main/talk) directory. The [notebooks](tree/main/notebooks) directory contains practice notebooks used to develop concepts for the talk. They are not necessarily well documented.
+You can find the final notebooks used in the talk in the [talks](tree/main/talk) directory. The [notebooks](tree/main/notebooks) directory contains practice notebooks used to develop concepts for the talk. They are not necessarily well documented. The talk directory contains information on what notebooks are availible.
+
+If you were to ask - what big thing is missing? The answer would be the determination of systematic errors. The collaborations, of course, paid extensive attention to this. However, it requires a lot more data, studies, and tests, and so does note appear in these Open Data demos.
 
 ### ServiceX for the demo
 
