@@ -97,31 +97,36 @@ files = {
 }
 
 cms_files = {
-    'data_2e_7TeV':
-        {
-            'files': 'cernopendata://16',
-            'nickname': 'data_2e_7TeV'
-        },
-    'data_2mu_7TeV':
-        {
-            'files': 'cernopendata://17',
-            'nickname': 'data_2e_7TeV'
-        },
-    'data_2mu_8TeV_B':
-        {
-            'files': 'cernopendata://6004',
-            'nickname': 'data_2mu_8TeV_B'
-        },
-    'data_2mu_8TeV_C':
-        {
-            'files': 'cernopendata://6030',
-            'nickname': 'data_2mu_8TeV_C'
-        },
-    'data_2e_8TeV_B':
-        {
-            'files': 'cernopendata://6029',
-            'nickname': 'data_2e_8TeV_B'
-        },
+    # Not done yet
+    # 'data_2e_7TeV':
+    #     {
+    #         'files': 'cernopendata://16',
+    #         'nickname': 'data_2e_7TeV'
+    #     },
+    # Not done yet
+    # 'data_2mu_7TeV':
+    #     {
+    #         'files': 'cernopendata://17',
+    #         'nickname': 'data_2e_7TeV'
+    #     },
+    # Not done yet
+    # 'data_2mu_8TeV_B':
+    #     {
+    #         'files': 'cernopendata://6004',
+    #         'nickname': 'data_2mu_8TeV_B'
+    #     },
+    # Not done yet
+    # 'data_2mu_8TeV_C':
+    #     {
+    #         'files': 'cernopendata://6030',
+    #         'nickname': 'data_2mu_8TeV_C'
+    #     },
+    # Not done yet
+    # 'data_2e_8TeV_B':
+    #     {
+    #         'files': 'cernopendata://6029',
+    #         'nickname': 'data_2e_8TeV_B'
+    #     },
     'data_2e_8TeV_C':
         {
             'files': 'cernopendata://6003',
@@ -152,11 +157,12 @@ cms_files = {
             'files': 'cernopendata://1382',
             'nickname': 'ZZTo2e2mu_mll4_7TeV'
         },
-    'DYJetsToLL_M-50_7TeV':
-        {
-            'files': 'cernopendata://1394',
-            'nickname': 'DYJetsToLL_M_50_7TeV'
-        },
+    # Refuses to start at all
+    # 'DYJetsToLL_M-50_7TeV':
+    #     {
+    #         'files': 'cernopendata://1394',
+    #         'nickname': 'DYJetsToLL_M_50_7TeV'
+    #     },
     'DYJetsToLL_M-10To50_TuneZ2_7TeV':
         {
             'files': 'cernopendata://1393',
