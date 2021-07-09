@@ -42,6 +42,8 @@ Setup your environment:
 
 From there you can start `jupyter-lab`.
 
+If you are on windows, you'll need to make sure LongPathNames are turned on - as some of the CMS pathnames are longer than... well... heck.
+
 ### Running on binder
 
 It is not currently possible to run on `binder` as `ServiceX` uses a non-standard port to download data.
