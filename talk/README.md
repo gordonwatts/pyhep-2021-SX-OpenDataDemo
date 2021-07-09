@@ -10,7 +10,7 @@ They are meant to be presented approximatly in order.
 
 A quick table on the data that is being used by the CMS Higgs. Note that the current notebook does not use all the datasets availible.
 
-There are almost 70 TB of data availible. The current notebook is using 37 TB.
+There are almost 70 TB of data availible. The current notebook is using 42 TB.
 
 | Name                         | Dataset URL                          | Size (GB) | Used? |
 |------------------------------|--------------------------------------|-----------|-------|
@@ -30,7 +30,7 @@ There are almost 70 TB of data availible. The current notebook is using 37 TB.
 | ZZTo4e_8TeV                  | http://opendata.cern.ch/record/10065 | 430       | Y     |
 | ZZTo2e2mu_8TeV               | http://opendata.cern.ch/record/10054 | 466       | Y     |
 | TTbar_8TeV                   | http://opendata.cern.ch/record/9518  | 2300      | Y     |
-| data_2mu_7TeV                | http://opendata.cern.ch/record/17    | 5300      | N     |
+| data_2mu_7TeV                | http://opendata.cern.ch/record/17    | 5300      | Y     |
 | data_2mu_8TeV_B              | http://opendata.cern.ch/record/6004  | 8700      | N     |
 | data_2mu_8TeV_C              | http://opendata.cern.ch/record/6030  | 1070      | N     |
 | data_2e_8TeV_B               | http://opendata.cern.ch/record/6029  | 9400      | N     |

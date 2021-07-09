@@ -103,12 +103,11 @@ cms_files = {
             'files': 'cernopendata://16',
             'nickname': 'data_2e_7TeV'
         },
-    # Not done yet
-    # 'data_2mu_7TeV':
-    #     {
-    #         'files': 'cernopendata://17',
-    #         'nickname': 'data_2e_7TeV'
-    #     },
+    'data_2mu_7TeV':
+        {
+            'files': 'cernopendata://17',
+            'nickname': 'data_2e_7TeV'
+        },
     # Not done yet
     # 'data_2mu_8TeV_B':
     #     {
