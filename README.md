@@ -1,6 +1,8 @@
 # pyhep-2021-SX-OpenDataDemo
  Talk and practice notebooks for the PyHEP 2021 Proposed Talk
  
+ [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5142261.svg)](https://doi.org/10.5281/zenodo.5142261)
+ 
 **NOTE** This repository was just just at the time of the talk at PyHEP. Improvements to these notebooks, and backend software, are getting tracked in [another repository](https://github.com/iris-hep/opendata-higgs-discovery) in the [iris-hep organization](https://github.com/iris-hep). There should be no further modificaitons to this repository!
 
 ## Using
